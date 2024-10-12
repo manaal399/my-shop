@@ -1,0 +1,66 @@
+{%extends 'Base.html'%}
+{%block content%}
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        {%for promotion  in promotion%}
+      <div class="carousel-item {%if forloop.first%} active {%endif%}">
+        <img src="{{promotion.image.url}}" class="d-block w-100" alt="{{promotion.name}}">
+      </div>
+      {%endfor%} 
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+     <hr>
+     <h1  class="text-center">Latest Products</h1>
+     <hr>
+     <div class="row">
+        {%for product in product%}
+        <div class="col-md-3">
+            <div class="card" style="width:20rem;">
+                <img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.description}}</p>
+                    <p class="card-text">{{product.price}}</p>
+                    <a href="{%url 'add_to_cart' product.id%}" class="btn btn-primary">add to cart</a>
+                </div>
+            </div>
+        </div>
+        {%endfor%}  
+     </div>
+     <hr>
+     <h1 class="text-center">Makeup Products</h1>
+
+     <hr>
+     <div class="row">
+    {%for product in product%}
+    <div class="col-md-3">
+          <div class="card" style="width:20rem;">
+              <img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}">
+              <div class="card-body">
+                  <h5 class="card-title">{{product.name}}</h5>
+                  <p class="card-text">{{product.description}}</p>
+                  <p class="card-text">{{product.price}}</p>
+                  <a href="" class="btn btn-primary">View Makeup</a>
+                  <a href="{%url 'add_to_cart' product.id%}" class="btn btn-primary">add to cart</a>
+              </div>
+          </div>
+    </div>
+    {%endfor%}
+    </div>
+  </div>
+
+{%endblock%}
